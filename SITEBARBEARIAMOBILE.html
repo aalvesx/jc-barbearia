@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JC Barbearia</title>
+  <style>
+    @font-face {
+      font-family: 'Proxima Nova';
+      src: url('fonts/ProximaNova-Regular.otf') format('opentype');
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Proxima Nova', Arial, sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #4d65b4;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .logo {
+      max-width: 300px;
+      width: 100%;
+      margin: 0 auto 10px;
+      display: block;
+    }
+
+    nav {
+      background-color: #444;
+      padding: 10px;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #ffcc00;
+      color: black;
+    }
+
+    main {
+      flex: 1;
+      padding: 10px;
+    }
+
+    section {
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    section.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .servicos-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .servico {
+      background-color: white;
+      border-radius: 8px;
+      padding: 15px;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .servico img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .galeria img {
+      width: 200px;
+      height: auto;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.05);
+    }
+
+    .secao-com-imagem {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .imagem-secao {
+      width: 200px;
+      border-radius: 8px;
+    }
+
+    .texto-secao {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .mapa {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .mapa iframe {
+      width: 100%;
+      max-width: 600px;
+      height: 300px;
+      border: 0;
+      border-radius: 8px;
+    }
+
+    footer {
+      background-color: #000;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
+      .servicos-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .galeria {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .secao-com-imagem {
+        flex-direction: column;
+      }
+
+      .imagem-secao {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      nav {
+        flex-direction: column;
+      }
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const links = document.querySelectorAll("nav a");
+      const sections = document.querySelectorAll("section[id]");
+
+      function showSection(id) {
+        sections.forEach(sec => sec.classList.remove("active"));
+        const target = document.getElementById(id);
+        if (target) {
+          target.classList.add("active");
+        }
+      }
+
+      links.forEach(link => {
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          const id = link.getAttribute("href").substring(1);
+          showSection(id);
+        });
+      });
+
+      showSection("servicos");
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <img src="img/LOGOBARBEARIA.png" alt="Logo JC Barbearia" class="logo">
+    <h1>JC Barbearia</h1>
+    <p>Estilo, qualidade e atendimento de primeira</p>
+  </header>
+
+  <nav>
+    <a href="#servicos">Serviços</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#horario">Horário</a>
+    <a href="#contato">Contato</a>
+  </nav>
+
+  <main>
+    <!-- Serviços -->
+    <section id="servicos">
+      <h2>Serviços</h2>
+      <div class="servicos-container">
+        <div class="servico">
+          <h3>Corte R$35,00</h3>
+          <img src="img/cortefd.jpg" alt="Corte Masculino">
+        </div>
+        <div class="servico">
+          <h3>Barba R$25,00</h3>
+          <img src="img/Cuidados-Com-a-Barba-2.png" alt="Barba">
+        </div>
+        <div class="servico">
+          <h3>Sobrancelha R$20,00</h3>
+          <img src="img/sobrancelhafeita.jpg" alt="Sobrancelha">
+        </div>
+        <div class="servico">
+          <h3>Pacote R$70,00</h3>
+          <img src="img/pacotecompleto.jpg" alt="Pacote completo">
+        </div>
+      </div>
+    </section>
+
+    <!-- Galeria -->
+    <section id="galeria">
+      <h2>Galeria de Cortes</h2>
+      <div class="galeria">
+        <img src="img/risquinhocoração.webp" alt="Corte 1">
+        <img src="img/risquinhoduplo.webp" alt="Corte 2">
+        <img src="img/risquinhofaca.webp" alt="Corte 3">
+        <img src="img/risquinhoraio.webp" alt="Corte 4">
+        <img src="img/risquinhosorriso.webp" alt="Corte 5">
+        <img src="img/risquinhotribal.webp" alt="Corte 6">
+      </div>
+    </section>
+
+    <!-- Horário -->
+    <section id="horario">
+      <h2>Horário de Atendimento</h2>
+      <div class="secao-com-imagem">
+        <img src="img/conceito-de-gerenciamento-de-tempo-de-contorno-isometrico.png" alt="Horário" class="imagem-secao">
+        <div class="texto-secao">
+          <p>Segunda a Sexta: 09h às 19h</p>
+          <p>Sábados: 09h às 17h</p>
+          <p>Domingos e feriados: fechado</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato">
+      <h2>Contato</h2>
+      <div class="secao-com-imagem">
+        <img src="img/tela-telefone-em-branco-em-fundo-roxo-removebg-preview.png" alt="Contato" class="imagem-secao">
+        <div class="texto-secao">
+          <p>WhatsApp: (45) 9821-9233</p>
+          <p>Endereço: Rua Guarapari, R. Caieiras - Jardim Copacabana, Foz do Iguaçu - PR</p>
+          <p><a href="https://www.google.com/maps/search/?api=1&query=Rua+Guarapari,+R.+Caieiras+-+Jardim+Copacabana,+Foz+do+Iguaçu+-+PR" target="_blank">Ver no mapa</a></p>
+        </div>
+      </div>
+      <div class="mapa">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3645.191084592705!2d-54.5940664!3d-25.491226799999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9457a4ebba1cd8d1%3A0xeac956a32f9f1543!2sRua%20Guarapari%20-%20Jardim%20Copacabana%2C%20Foz%20do%20Iguaçu%20-%20PR!5e0!3m2!1spt-BR!2sbr!4v1715273700000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 JC Barbearia - Todos os direitos reservados</p>
+  </footer>
+</body>
+</html>
